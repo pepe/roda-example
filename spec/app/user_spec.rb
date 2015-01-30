@@ -18,6 +18,11 @@ RSpec.describe App::User, type: :feature do
       it 'shows welcome message' do
         expect(page).to have_content 'You were logged in pepe'
       end
+
+      it 'has link to logout' do
+        click_link 'Logout'
+        expect(page).to have_content 'User logged out'
+      end
     end
   end
 
@@ -36,7 +41,7 @@ RSpec.describe App::User, type: :feature do
     end
   end
 
-  context 'logging out', focus: true do
+  context 'logging out' do
     before :each do
       visit 'login'
       fill_in 'account', with: 'pepe'
@@ -52,6 +57,12 @@ RSpec.describe App::User, type: :feature do
     it 'shows that user was logged out' do
       visit 'logout'
       expect(page).to have_content('User logged out')
+    end
+
+    it 'has link to login page' do
+      click_link 'Logout'
+      click_link 'Login'
+      fill_in 'account', with: 'pepe'
     end
   end
 end

@@ -1,4 +1,10 @@
+%h1 Login
+
 %form(method='post' action='/login')
-  %input(type='text' name='account')
-  %input(type='password' name='password')
+  %label
+    Account
+    %input(type='text' name='account')
+  %label
+    Password
+    %input(type='password' name='password')
   %input(type='submit' value='login')
