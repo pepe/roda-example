@@ -1,5 +1,3 @@
-$LOAD_PATH.unshift('lib')
-
-require 'app'
+require './app'
 
 run App::User.freeze.app

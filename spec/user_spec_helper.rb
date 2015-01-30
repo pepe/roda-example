@@ -1,6 +1,4 @@
-$LOAD_PATH.unshift(File.dirname('lib'))
-
-require 'app'
+require './app'
 require 'capybara/rspec'
 
 RSpec.configure do |config|

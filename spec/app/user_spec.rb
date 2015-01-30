@@ -1,8 +1,23 @@
 require 'user_spec_helper'
 
 RSpec.describe App::User, type: :feature do
-  context 'user detail' do
-    it 'needs to be authorized before accessing' do
+  context 'logging in' do
+    it 'has login page' do
+      visit 'login'
+      expect(page.status_code).to be 200
+    end
+
+    it 'can log in an user' do
+      visit 'login'
+      fill_in 'account', with: 'pepe'
+      fill_in 'password', with: 'pepe'
+      click_button 'login'
+      expect(page.status_code).to be 200
+    end
+  end
+
+  context 'profile' do
+    it 'has authorization' do
       visit '/profile'
       expect(page.status_code).to be 401
     end
@@ -23,21 +38,6 @@ RSpec.describe App::User, type: :feature do
         click_link 'Logout'
         expect(page).to have_content 'User logged out'
       end
-    end
-  end
-
-  context 'logging in' do
-    it 'has login page' do
-      visit 'login'
-      expect(page.status_code).to be 200
-    end
-
-    it 'can log in an user' do
-      visit 'login'
-      fill_in 'account', with: 'pepe'
-      fill_in 'password', with: 'pepe'
-      click_button 'login'
-      expect(page.status_code).to be 200
     end
   end
 
